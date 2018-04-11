@@ -10,6 +10,7 @@ import { ITableData } from '../models/ITableData.model';
 })
 
 export class TableComponent implements OnInit {
+  coloums: String[];
   data: ITableData[];
   errorMsg: String;
 
@@ -17,12 +18,12 @@ export class TableComponent implements OnInit {
 
   ngOnInit() {
     this.getCryptoData('btc');
+    this.coloums = this.cryptoService.getColumns();
   }
 
   getCryptoData(token: String) {
     this.cryptoService.getCryptoData(token).subscribe(result => {
-      this.data = result;
-      console.log(this.data);
+      this.data = Array.from(result);
     },
       error => this.errorMsg = <any>error);
   }

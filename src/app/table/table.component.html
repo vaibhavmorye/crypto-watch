@@ -1,10 +1,12 @@
-<table border="1px">
-  <tr>
-    <th>Name</th>
-    <th>Age</th>
-  </tr>
-  <tr>
-    <td>Finn</td>
-    <td>10</td>
-  </tr>
-</table>
+<table>
+    <tr>
+      <th *ngFor="let col of columns">
+        {{col}}
+      </th>
+    </tr>
+    <tr *ngFor="let char of data">
+      <td *ngFor="let col of columns">
+        {{char[col]}}
+      </td>
+    </tr>
+  </table>

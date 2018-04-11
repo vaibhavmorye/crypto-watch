@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { currency } from '../models/currency.model';
+import { ICurrency } from '../models/ICurrency.model';
 import { CryptodataService } from '../services/cryptodata.service';
 
 @Component({
@@ -9,13 +9,19 @@ import { CryptodataService } from '../services/cryptodata.service';
 })
 export class DropsearchbarComponent implements OnInit {
 
-  _listFilter:String;
-  filteredCurrency: currency[];
-  currencys:currency[];
+  _listFilter: string;
+  filteredCurrency: ICurrency[];
+  currencys: ICurrency[];
+  errorMsg: String;
 
-  constructor(private CryptodataService: CryptodataService) { this.listFilter = ''; }
+  constructor(private cryptodataService: CryptodataService) { this.listFilter = ''; }
 
   ngOnInit() {
+    this.cryptodataService.getCryptoCur().subscribe(result => {
+      this.currencys =result;
+      console.log(typeof( this.currencys));
+    },
+      error => this.errorMsg = <any>error);
   }
 
   get listFilter(): string {
@@ -24,13 +30,13 @@ export class DropsearchbarComponent implements OnInit {
 
   set listFilter(value: string) {
     this._listFilter = value;
-    this.filteredCurrency = this._listFilter ? this.performFilter(this.listFilter) : this.products;
+    this.filteredCurrency = this._listFilter ? this.performFilter(this.listFilter) : this.currencys;
   }
 
-  performFilter(filterBy: string): Currency[] {
+  performFilter(filterBy: string): ICurrency[] {
     filterBy = filterBy.toLocaleLowerCase();
-    console.log(this.products.filter((currency: Currency) => currency.productName.toLocaleLowerCase().indexOf(filterBy) != -1));
-    return this.products.filter((product: Currency) => product.productName.toLocaleLowerCase().indexOf(filterBy) != -1);
+    console.log(this.currencys.filter((currency: ICurrency) => currency.name.toLocaleLowerCase().indexOf(filterBy) != -1));
+    return this.currencys.filter((currency: ICurrency) => currency.name.toLocaleLowerCase().indexOf(filterBy) != -1);
 
   }
 }
