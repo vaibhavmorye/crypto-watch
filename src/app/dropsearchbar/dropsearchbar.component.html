@@ -1,0 +1,10 @@
+<div>
+  <input type='text' [(ngModel)]='listFilter' />
+</div>
+<div>
+  <span> Select currency </span>
+  <select *ngif=`currencys && currencys.length`>
+    <option *ngFor="let currency of currencys">{{currency.name}}</option>
+  </select>
+
+</div>
