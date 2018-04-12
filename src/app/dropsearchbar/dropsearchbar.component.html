@@ -1,0 +1,13 @@
+<div>
+    <h2>Hello {{name}}</h2>
+    <label>Name</label>
+    <select >
+        <option *ngFor="let currency of currencys | Keys" [attr.value]="currencys[currency].ticker">
+            {{currencys[currency].name}}
+        </option>
+    </select>
+</div>
+
+<!-- <div class="test" *ngFor="let currency of currencys| Keys">
+      {{currency}} {{currencys[currency].name}}
+    <div> -->

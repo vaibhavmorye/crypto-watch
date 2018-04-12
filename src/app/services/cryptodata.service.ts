@@ -20,9 +20,9 @@ export class CryptodataService {
       .catch(this.handleError);
   }
 
-  getCryptoCur(): Observable<ICurrency[]> {
+  getCryptoCur(): Observable<any> {
     var serviceUrl = 'https://infinite-depths.herokuapp.com/coins';
-    return this.http.get<ICurrency[]>(serviceUrl)
+    return this.http.get<any>(serviceUrl)
       .do(data => { }) //console.log('All' + JSON.stringify(data))
       .catch(this.handleError);
   }

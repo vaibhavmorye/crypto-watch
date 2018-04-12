@@ -8,6 +8,7 @@ import { TableRowComponent } from './table-row/table-row.component';
 import { CryptodataService } from './services/cryptodata.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { DropsearchbarComponent } from './dropsearchbar/dropsearchbar.component';
+import { MainPipe } from './main-pipe.module';
 
 
 @NgModule({
@@ -16,11 +17,11 @@ import { DropsearchbarComponent } from './dropsearchbar/dropsearchbar.component'
     TableComponent,
     TableRowComponent,
     DropsearchbarComponent
-
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    MainPipe
   ],
   providers: [CryptodataService],
   bootstrap: [AppComponent]
